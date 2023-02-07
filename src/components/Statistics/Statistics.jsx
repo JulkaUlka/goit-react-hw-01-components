@@ -1,27 +1,37 @@
 import PropTypes from 'prop-types';
+import {
+  Card,
+  CardLabel,
+  CardQuantity,
+  CardTitle,
+  CardItem,
+  CardList,
+} from './Statistics.styled.jsx';
 
-export function Statistics({ title, stats}) {
+export function Statistics({ title, stats }) {
   return (
-    <div className="statistics">
-      {title && <h2 className="title">{title}</h2>}
+    <Card>
+      {title && <CardTitle>{title}</CardTitle>}
 
-      <ul className="stat-list">
+      <CardList>
         {stats.map(stat => (
-          <li className="item" id={stat.id} key={stat.id}>
-            <span className="label">{stat.label}</span>
-            <span className="percentage">{stat.percentage}</span>
-          </li>
+          <CardItem id={stat.id} key={stat.id}>
+            <CardLabel>{stat.label}</CardLabel>
+            <CardQuantity>{stat.percentage}%</CardQuantity>
+          </CardItem>
         ))}
-      </ul>
-    </div>
+      </CardList>
+    </Card>
   );
 }
 
 Statistics.propTypes = {
   title: PropTypes.string,
-  stats: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    percentage: PropTypes.number.isRequired,
-  })).isRequired,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
