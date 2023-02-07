@@ -1,4 +1,16 @@
 import PropTypes from 'prop-types';
+import {
+  Card,
+  CardAvatar,
+  CardHeader,
+  CardInfo,
+  CardInfoList,
+  CardLabel,
+  CardLocation,
+  CardName,
+  CardQuantity,
+  CardTag,
+} from './Profile.styled.jsx';
 
 export function Profile({
   username,
@@ -8,29 +20,28 @@ export function Profile({
   stats: { followers, views, likes },
 }) {
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt={username} className="avatar" />
-        <p className="name">{username}</p>
-        <p className="tag">{tag}</p>
-        <p className="location">{location}</p>
-      </div>
-
-      <ul className="stats">
-        <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{followers}</span>
-        </li>
-        <li>
-          <span className="label">Views</span>
-          <span className="quantity">{views}</span>
-        </li>
-        <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{likes}</span>
-        </li>
-      </ul>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardAvatar src={avatar} alt={username} />
+        <CardName>{username}</CardName>
+        <CardTag>{tag}</CardTag>
+        <CardLocation>{location}</CardLocation>
+      </CardHeader>
+      <CardInfo>
+        <CardInfoList>
+          <CardLabel>Followers</CardLabel>
+          <CardQuantity>{followers}</CardQuantity>
+        </CardInfoList>
+        <CardInfoList>
+          <CardLabel>Views</CardLabel>
+          <CardQuantity>{views}</CardQuantity>
+        </CardInfoList>
+        <CardInfoList>
+          <CardLabel>Likes</CardLabel>
+          <CardQuantity>{likes}</CardQuantity>
+        </CardInfoList>
+      </CardInfo>
+    </Card>
   );
 }
 
