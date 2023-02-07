@@ -1,7 +1,8 @@
-import friends from 'data/friends.json';
-import { FriendListItem } from './FriendListItem';
 
-export function FriendList() {
+import { FriendListItem } from 'components/FriendListItem/FriendListItem';
+import PropTypes from 'prop-types';
+
+export function FriendList({friends}) {
   return (
     <ul className="friend-list">
       {friends.map(friend => (
@@ -17,3 +18,6 @@ export function FriendList() {
   );
 }
 
+FriendList.propTypes = {
+  friends: PropTypes.arrayOf.isRequired,
+};
