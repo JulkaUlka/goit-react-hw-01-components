@@ -1,10 +1,12 @@
-export function Statistics(props) {
+import PropTypes from 'prop-types';
+
+export function Statistics({ title, stats}) {
   return (
     <div className="statistics">
-      <h2 className="title">{props.title}</h2>
+      {title && <h2 className="title">{title}</h2>}
 
       <ul className="stat-list">
-        {props.stats.map(stat => (
+        {stats.map(stat => (
           <li className="item" id={stat.id} key={stat.id}>
             <span className="label">{stat.label}</span>
             <span className="percentage">{stat.percentage}</span>
@@ -14,3 +16,12 @@ export function Statistics(props) {
     </div>
   );
 }
+
+Statistics.propTypes = {
+  title: PropTypes.string,
+  stats: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    percentage: PropTypes.number.isRequired,
+  })).isRequired,
+};
